@@ -1,0 +1,926 @@
+/**
+ * XLink Kai 7.4 WebUI.
+ * Coded by prestige and maintained by SgtLegend.
+ */
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
+  border: 0;
+  font-family: inherit;
+  font-size: 100%;
+  font-style: inherit;
+  font-weight: inherit;
+  margin: 0;
+  outline: 0;
+  padding: 0;
+  vertical-align: baseline;
+}
+
+:focus {
+  outline: 0;
+}
+
+body {
+  background-color: white;
+  color: black;
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+table {
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+caption, th, td {
+  font-weight:normal;
+  text-align: left;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: '';
+}
+
+blockquote,
+q {
+  quotes: '' '';
+}
+
+strong {
+  font-weight: bold;
+}
+
+body {
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  -webkit-text-size-adjust: none;
+  background-color: #444;
+  color: #fff;
+  font-family: Verdana;
+  font-size: 12px;
+  letter-spacing: .1px;
+  line-height: 18px;
+  margin: 0px;
+}
+
+a:link {
+  color: #069;
+  text-decoration: none;
+}
+
+a:visited {
+  color: #069;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #000000;
+  text-decoration: none;
+}
+
+#panelLeft,
+#panelCenter,
+#panelRight {
+  background: #ffffff;
+  background: -moz-linear-gradient(top, #ffffff 0%, #99d6ff 100%);
+  background: -webkit-linear-gradient(top, #ffffff 0%,#99d6ff 100%);
+  background: linear-gradient(to bottom, #ffffff 0%,#99d6ff 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#99d6ff',GradientType=0 );
+  float: left;
+  height: 580px;
+  overflow: hidden;
+  position: relative;
+  width: 600px;
+}
+
+#panelInfo {
+  background-color: #09c;
+  color: #fff;
+  display: none;
+  height: 300px;
+  left: 50%;
+  margin-left: -300px;
+  overflow: hidden;
+  position: absolute;
+  text-align: left;
+  top: 45px;
+  width: 600px;
+  z-index: 15;
+}
+
+#panelInfo a {
+  display: inline-block;
+  margin-right: 4px;
+  margin-top: 5px;
+}
+
+#panelInfo a,
+#panelInfo a:link,
+#panelInfo a:visited {
+  color: #fff;
+  text-decoration: none;
+}
+
+#panelInfo a:hover {
+  color: #6cf;
+  text-decoration: underline;
+}
+
+#panelInfoContent {
+  border: 1px solid #cf7;
+  box-sizing: border-box;
+  height: 310px;
+  margin-left: 10px;
+  margin-top: 10px;
+  overflow: auto;
+  padding: 5px 10px;
+  width: 580px;
+}
+
+#chatContainer {
+  background-color: #fff;
+  box-sizing: border-box;
+  height: 483px;
+  opacity: 0.8;
+  overflow: hidden;
+  padding-left: 5px;
+  padding-right: 5px;
+  width: 100%;
+}
+
+
+
+
+
+
+
+
+
+/* TO BE CLEANED!! */
+
+#chat {
+  color: #000;
+	height: 455px;
+  margin-bottom: 5px;
+  overflow: auto;
+  padding-top: 5px;
+}
+
+#chat > div
+{
+  clear: left;
+}
+
+#chat div table
+{
+  width: 100%;
+}
+
+td.chatUsername
+{
+	width: 112px;
+	padding-right: 8px;
+	font-size: 1em;
+	cursor: pointer;
+}
+
+td.chatText
+{
+	font-size: 1em;
+}
+
+.chatMod
+{
+	color: #44f;
+}
+
+.chatAdmin
+{
+	color: #f50;
+}
+
+#msg
+{
+	width: 400px;
+	border: 1px solid #808080;
+	padding: 3px;
+	float: left;
+}
+
+#allPlayers
+{
+	height: 485px;
+	width: 100%;
+	overflow: auto;
+	font-size: 12px;
+}
+
+.playerAdmin, .playerAdminOver, .playerMod, .playerModOver, .playerUser, .playerUserOver
+{
+	background-color: #fff;
+	color: #000;
+  cursor: pointer;
+  font-size: 12px;
+	margin-top: 1px;
+	opacity: 0.8;
+  overflow: hidden;
+	padding-left: 2px;
+	padding-right: 2px;
+}
+
+.playerAdmin, .playerAdminOver
+{
+	background: #fc6;
+}
+.playerAdminOver
+{
+	background: #aaa;
+}
+
+.playerMod, .playerModOver
+{
+  background: #66f;
+  color: #fff;
+}
+.playerModOver
+{
+	background: #aaa;
+}
+
+
+.playerUser, .playerUserOver
+{
+	background: #fff;
+}
+.playerUserOver
+{
+	background: #aaa;
+}
+
+
+#contacts
+{
+	height: 485px;
+	width: 100%;
+	overflow: auto;
+	font-size: 12px;
+}
+
+.contactContainer
+{
+	background-color:#fff;
+	color: #000;
+  font-size: 12px;
+  margin-top: 1px;
+	opacity: 0.8;
+  overflow: hidden;
+	padding: 2px;
+}
+
+.contactAvatar
+{
+  float: left;
+  height: 50px;
+  width: 50px;
+}
+
+.contactDetails {
+  margin-left: 54px;
+  overflow: hidden;
+}
+
+.contactPlayer
+{
+  box-sizing: border-box;
+  cursor: pointer;
+  float: left;
+  font-size: 1.0em;
+  height: 1.3em;
+  overflow: hidden;
+  padding-right: 5px;
+  text-overflow: ellipsis;
+	white-space: nowrap;
+	width: 100%;
+}
+
+.contactPing
+{
+  font-size: 12px;
+	height: 15px;
+	text-align: left;
+}
+
+.contactArena
+{
+  box-sizing: border-box;
+  clear: left;
+  font-size: 12px;
+  height: 15px;
+  overflow: hidden;
+  padding-right: 5px;
+  text-align: left;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+#debugContainer
+{
+	height: 480px;
+	width: 800px;
+	overflow: hidden;
+	border: 1px solid #eee;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-top: -250px;
+	margin-left: -400px;
+	background-color: #000;
+	opacity: 0.8;
+	MozOpacity: 0.8;
+	KhtmlOpacity: 0.8;
+	filter: alpha(opacity=80);
+	z-index: 80;
+	padding: 5px;
+	display: none;
+}
+
+#debug
+{
+	height: 430px;
+	width: 790px;
+	overflow: auto;
+	font-size: 12px;
+}
+
+#rawCMD
+{
+	display: inline;
+	margin: 0px;
+
+}
+
+#loginBox, #errorBox
+{
+	position: absolute;
+	z-index: 20;
+	width: 400px;
+	height: 275px;
+	top: 50%;
+	left: 50%;
+	margin-top: -100px;
+	margin-left: -200px;
+	border: 3px solid #cf7;
+	background-color: #09c;
+	color: #fff;
+	display: none;
+	overflow: auto;
+}
+
+#loginBox a, #loginBox a:link, #loginBox a:visited, #loginBox a:hover
+{
+	color: #fff;
+	font-weight: normal;
+}
+#loginBox a:hover
+{
+	font-weight: bold;
+}
+
+#loginBox h1
+{
+	width: 100px;
+	float: left;
+	padding: 0px;
+	margin: 0px;
+	font-weight: bold;
+	margin-left: 50px;
+}
+
+#metricDetails td:first-child
+{
+  font-weight: bold;
+  width: 220px;
+}
+
+
+.topGreen {
+  background: #fff;
+  background: -moz-linear-gradient(top, #fff 0%, #fff 25%, #e5fecb 100%);
+  background: -webkit-linear-gradient(top, #fff 0%,#fff 25%,#e5fecb 100%);
+  background: linear-gradient(to bottom, #fff 0%,#fff 25%,#e5fecb 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fff', endColorstr='#e5fecb',GradientType=0 );
+  box-shadow: 0 0 3px 2px rgba(0,0,0, 0.3);
+  color: #000;
+  display: block;
+  font-size: 12px;
+  font-weight: bold;
+  height: 27px;
+  overflow: hidden;
+  padding-top: 10px;
+  text-align: center;
+  width: auto;
+}
+
+
+#menu
+{
+	background-color: #fff;
+	margin: 3px 0px 3px 0px;
+	width: auto;
+	height: 50px;
+	display: block;
+}
+
+.submenu
+{
+	background-color: #fff;
+	margin: 3px 0px 3px 0px;
+	width: auto;
+	height: 50px;
+	display: block;
+	text-align: center;
+}
+
+#arenaCurrent
+{
+	height: 60px;
+	overflow: auto;
+}
+
+#arenaCurrent, #arenaCurrent a:link,#arenaCurrent a:hover, #arenaCurrent a:visited
+{
+	font-size: 12px;
+	color: #09c;
+}
+#arenaCurrent a:hover
+{
+	text-decoration: underline;
+}
+
+#blackScreen
+{
+	position: absolute;
+	z-index: 10;
+	background-color: #000;
+	opacity: 0.8;
+	MozOpacity: 0.8;
+	KhtmlOpacity: 0.8;
+	filter: alpha(opacity=80);
+	width: 100%;
+	height: 100%;
+	top: 0px;
+	left: 0px;
+	display: none;
+}
+
+#dialogBox
+{
+	width: 600px;
+	height: 300px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-top: -150px;
+	margin-left: -300px;
+	background-color: #eff;
+	z-index: 20;
+	display: none;
+}
+
+#dialogBoxContent
+{
+	width: 100%;
+	height: 280px;
+	color: #000;
+}
+
+#initBox
+{
+	width: 600px;
+	height: 100px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-top: -50px;
+	margin-left: -300px;
+	z-index: 20;
+	display: none;
+	text-align: center;
+}
+
+#initBoxContent
+{
+	width: 100%;
+	height: 50px;
+	font-size: 30px;
+	line-height: 50px;
+	color: #fff;
+}
+
+
+#kaiVectors,
+#kaiFavs
+{
+	font-size: 12px;
+  height: 485px;
+	line-height: 14px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  position: relative;
+}
+
+.kaiVectorContainer,
+.kaiVectorContainerFeatured,
+.kaiVectorContainerPrevious,
+.kaiFavContainer
+{
+	background-color: #fff;
+  background-position: 5px 5px;
+	background-repeat: no-repeat;
+  color: #000;
+	cursor: pointer;
+	font-size: 10px;
+  margin-top: 1px;
+  min-height: 52px;
+  opacity: 0.8;
+  overflow: hidden;
+  padding-bottom: 5px;
+  padding-right: 5px;
+  padding-top: 3px;
+}
+
+  .kaiVectorContainer:hover,
+  .kaiVectorContainerFeatured:hover,
+  .kaiVectorContainerPrevious:hover,
+  .kaiFavContainer:hover
+  {
+    background-color: #9df;
+  }
+
+.kaiVectorContainerFeatured
+{
+  background-color: #333;
+  background-position: 5px 5px;
+  background-size: 26px;
+  border-top: 1px solid #212121;
+  color: #fff;
+  height: auto;
+  margin-top: 0;
+  min-height: 28px;
+  padding-bottom: 6px;
+  padding-top: 3px;
+}
+
+  .kaiVectorContainerFeatured + .kaiVectorContainer {
+    border-top: 1px solid #212121;
+    margin-top: 0;
+  }
+
+  .kaiVectorContainerFeatured:hover
+  {
+    color: #000;
+  }
+
+.kaiVectorContainerPrevious
+{
+  background-position: 5px 12px;
+  min-height: initial;
+  padding-bottom: 16px;
+  padding-top: 14px;
+}
+
+#vectorPlayers a:link,#vectorPlayers a:hover, #vectorPlayers a:visited
+{
+	color: #000;
+	text-decoration: none;
+}
+
+#bigAssContainer
+{
+	margin-top: 10px;
+	margin-left: 20px;
+	margin-bottom: 10px;
+}
+
+#topNav
+{
+	position: relative;
+}
+
+#btnNavCont, #btnNavNav, #btnNavFav, #btnChat, #btnArenas, #btnDebug, #btnMetrics, #btnPlayChat, #btnPlayArena, #btnLogin, #btnLogout, #btnConfig, #btnGames
+{
+	border-top: 1px solid #444;
+	border-right: 1px solid  #444;
+	border-left: 1px solid  #aaa;
+	border-bottom: 1px solid  #aaa;
+	background-color: #aaa;
+	color: #fff;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+input[value='Logout']:not(#btnLogout) {
+	display: none;
+}
+
+.foundConsoles {
+	background-color: #eee;
+	color: #000;
+	height: 50px;
+	margin-top: 2px;
+}
+
+.foundConsoles img {
+	float: left;
+	margin-right: 5px;
+}
+
+.failedConsole {
+	border: 1px solid red;
+}
+
+.failedConsole .consoleMac,
+.failedConsole .failedError {
+	color: red;
+}
+
+.emote
+{
+	height: 20px;
+}
+
+#emotIcons
+{
+	width: 260px;
+	height: 230px;
+	position: relative;
+	top: -240px;
+	right: 20px;
+	border: 2px solid #09c;
+	background-color: #000;
+	z-index: 10;
+	display: none;
+	overflow: hidden;
+}
+
+.emoticon
+{
+	width: 30px;
+	height: 25px;
+	overflow: hidden;
+	float: left;
+	margin-left: 2px;
+	margin-right: 2px;
+	text-align: center;
+	cursor: pointer;
+	border: 1px solid #000;
+}
+
+#winkie
+{
+	background-image: url('/img/emoticons/wink.gif');
+	background-repeat: no-repeat;
+	width: 35px;
+	height: 25px;
+	cursor: pointer;
+	float: left;
+	margin-left: 5px;
+	display: inline;
+}
+
+#logo
+{
+	position: absolute;
+	top: 13px;
+	left: 25px;
+	z-index: 1;
+	width: 28px;
+	height: 28px;
+	background-image: url('/img/logoFrames.gif');
+	background-position: 0px 0px;
+	background-repeat: no-repeat;
+}
+
+
+#allPlayers  div.playerName
+{
+	overflow: hidden;
+	width: 120px;
+	height: 20px;
+	float: left;
+	white-space: nowrap;
+}
+#allPlayers  div.playerInChat
+{
+	width: 50px;
+	height: 20px;
+	text-align: right;
+	float: right;
+}
+#allPlayers  div.playerPing
+{
+	float: left;
+	width: 100px;
+	height: 20px;
+}
+
+#allPlayers  div.playerStatus
+{
+	text-align: right;
+	float: right;
+	width: 50px;
+	height: 20px;
+}
+
+#allPlayers  div.playerActions
+{
+	text-align: right;
+	float: right;
+	width: 50px;
+	height: 20px;
+}
+
+#allPlayers  div.isSelected
+{
+	border: 1px solid #09c;
+}
+
+.pmContainer
+{
+	width: 500px;
+	height: 300px;
+	position: absolute;
+	top: 50px;
+	left: 50px;
+	z-index: 50;
+	background-color: #aaa;
+}
+.pmChatTitle
+{
+	height: 25px;
+	line-height: 25px;
+	width: 470px;
+	float: left;
+	background-color: #e5fecb;
+	border-bottom: 1px solid #aaa;
+	color: #000;
+	margin-left: 2px;
+	margin-top: 2px;
+	font-weight: bold;
+	cursor: move;
+}
+.pmClose
+{
+	background: #e5fecb url('/img/01.png') no-repeat 5px 5px;
+	border-bottom: 1px solid #aaa;
+	margin-top: 2px;
+	float: left;
+	width: 25px;
+	height: 25px;
+	cursor: pointer;
+}
+
+.pmChatBox
+{
+	clear: left;
+	margin-left: 2px;
+	width: 495px;
+	height: 248px;
+	background-color: #fff;
+	color: #000;
+	overflow: auto;
+}
+.pmInputBox
+{
+	margin-left: 2px;
+	width: 490px;
+	height: 15px;
+}
+
+#arenaCommands
+{
+	color: #000;
+	text-align: left;
+	overflow: hidden;
+}
+
+.infoPlayerIMG
+{
+	margin-left: 5px;
+	width: 50px;
+	height: 50px;
+	float: left;
+	background-image: url('/img/blank_avatar.gif');
+}
+
+.infoPlayerName
+{
+	width: 120px;
+	height: 25px;
+	line-height: 25px;
+	float: left;
+	margin-left: 5px;
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+.infoPlayerPing
+{
+	width: 120px;
+	height: 25px;
+	line-height: 25px;
+	float: left;
+	margin-left: 5px;
+}
+
+.infoPlayerCommands
+{
+	margin-top: 60px;
+  padding-left: 5px;
+}
+
+#soundContainer {
+  left: -99999px;
+  position: absolute;
+}
+
+.iconSound, .iconSoundOff
+{
+	background: url('/img/06-on.png') no-repeat 2px 2px;
+	width: 20px;
+	height: 20px;
+	border: 0px;
+	margin: 0px;
+	padding: 0px;
+	cursor: pointer;
+	position: absolute;
+	top: 5px;
+	left: 5px;
+
+}
+.iconSoundOff
+{
+	background-image: url('/img/06-off.png');
+}
+
+
+.tableCreatePrivateArena,.passwordRequired
+{
+	margin-left: 50px;
+}
+
+.highlight
+{
+	background-color: #ffff66;
+}
+
+
+fieldset
+{
+	border: 1px solid #eee;
+	width: 350px;
+	margin-left: 20px;
+	padding: 5px;
+}
+
+legend
+{
+	color: #fff;
+	background: #888;
+	border: 1px solid #eee;
+	padding: 2px 6px;
+}
+
+
+#configuration
+{
+	margin-left: 40px;
+	width: 780px;
+	height: 580px;
+	background-color: #444;
+	display: block;
+}
+
+#selStatus
+{
+	margin-top: 2px;
+}
+
+
+#gameWindow
+{
+	width: 500px;
+	height: 200px;
+	border: 1px solid #000;
+	background: #444;
+	color: #fff;
+	position: absolute;
+	top: 20px;
+	left: 200px;
+	z-index: 20;
+	display: none;
+}

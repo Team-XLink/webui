@@ -1,0 +1,115 @@
+/**
+ * XLink Kai 7.4 WebUI.
+ * Coded by prestige and maintained by SgtLegend.
+ */
+
+body {
+  background-color: #222;
+  padding-bottom: 10px;
+  padding-top: 10px;
+}
+
+fieldset {
+  float: left;
+  margin-bottom: 20px;
+  padding: 10px;
+  text-align: left;
+  width: 340px;
+}
+
+input[type='checkbox'],
+input[type='radio'] {
+  margin: 0;
+}
+
+input[type='checkbox'] {
+  margin-right: 2px;
+  margin-top: -2px;
+}
+
+input[type='radio'] {
+  margin-right: 4px;
+}
+
+select {
+  min-width: 200px;
+}
+
+.form-config__wrapper {
+  background-color: #444;
+  margin-left: auto;
+  margin-right: auto;
+  overflow: hidden;
+  width: 780px;
+}
+
+.form-config__save {
+  box-sizing: border-box;
+  padding: 20px;
+  text-align: right;
+}
+
+  .form-config__save input[type='button'] {
+    -webkit-appearance: none;
+    appearance: none;
+    font-size: 16px;
+  }
+
+.form-config__top-bar {
+  margin-bottom: 10px;
+  padding-left: 10px;
+  text-align: left;
+}
+
+.form-config__logo {
+  background: url('/img/logoFrames.gif') 0 0 no-repeat;
+  float: left;
+  height: 28px;
+  margin-top: -6px;
+  width: 28px;
+}
+
+.form-config__title {
+  padding-left: 20px;
+}
+
+a.form-config__help {
+  background: url('/img/help.png') center right no-repeat;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  padding-right: 20px;
+}
+
+.form-config__push {
+  margin-left: 20px;
+}
+
+.form-config__padded-top {
+  padding-top: 5px;
+}
+
+.form-config__group:not(:last-child) {
+  margin-bottom: 10px;
+}
+
+.form-config__section:not(:last-child) {
+  margin-bottom: 5px;
+}
+
+.form-config__checkbox-group label {
+  margin-right: 10px;
+}
+
+.form-config__keychain {
+  background-color: orange;
+  display: none;
+  font-size: 12px;
+  margin-bottom: 10px;
+  margin-top: 8px;
+  padding: 5px 10px;
+}
+
+.clear {
+  clear: both;
+}

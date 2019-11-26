@@ -1,0 +1,131 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>XLink Kai 7.4</title>
+  <link rel="stylesheet" href="/css/main.css?kid=191124">
+  <link rel="icon" href="/favicon.ico?kid=191124" type="image/ico">
+</head>
+<body>
+
+  <div id="bigAssContainer">
+    <div id="panelLeft" style="width: 220px;">
+      <div class="topGreen" id="headerKaiVectors">Navigation</div>
+      <div class="submenu">
+        <input type="button" id="btnNavCont" value="Contacts" onclick="toggleNavCont('cont');">
+        <input type="button" id="btnNavFav" value="Fav" onclick="toggleNavCont('fav');"><br>
+        <select id="selStatus" onchange="changeStatus(this.value);">
+          <option id="statPlayer" value="1">Player</option>
+          <option id="statHosting" value="2">Hosting</option>
+          <option id="statDedicated" value="3">Dedicated</option>
+        </select>
+      </div>
+      <div id="kaiVectors"></div>
+      <div id="kaiFavs" style="display: none;"></div>
+      <div id="contacts" style="display: none;"></div>
+    </div>
+
+    <div id="panelCenter" style="border-left: 1px solid #aaa; border-right: 1px solid #aaa;">
+      <div id="topNav" class="topGreen">
+        <input id="btnChat" type="button" value="General Chat" onclick="switchArena(''); toggleNavCont('cont');">
+        <input id="btnArenas" type="button" value="Game Arenas" onclick="showArenaView();">
+        <!--
+        <input id="btnDebug" type="button" value="Debug" onclick="$('debugContainer').style.display=$('debugContainer').style.display=='none' ? 'block' : 'none';">
+        -->
+        <input id="btnMetrics" type="button" value="Metrics" onclick="sendToEngine('KAI_CLIENT_GET_METRICS	');">
+        <input id="btnConfig" type="button" value="Configuration">
+        <input id="btnLogout" type="button" value="Logout" onclick="sendToEngine('KAI_CLIENT_LOGOUT	');">
+        <div id="iconSound" class="iconSound" onclick="soundToggle();" style="display: none;"></div>
+      </div>
+
+      <div id="menu">
+        <img id="arenaIcon" src="http://client.teamxlink.co.uk/media/avatars_50/default.jpg" width="50" height="50" style="text-align: right; margin-right: 10px; float: left;">
+        <div id="arenaCurrent"></div>
+      </div>
+
+      <div style="clear: both;"></div>
+
+      <div id="chatContainer">
+        <div id="chat"></div>
+        <div style="position: relative; z-index: 30;">
+          <input type="text" size="80" id="msg" onkeyup="chatKeyUp(event);">
+          <div id="winkie" onclick="$('emotIcons').style.display=$('emotIcons').style.display=='block' ? 'none' : 'block';"></div>
+        </div>
+        <div style="position: absolute; right: 5px;"><div id="emotIcons"></div></div>
+      </div>
+    </div>
+
+    <div id="panelRight" style="width: 220px;">
+      <div class="topGreen" id="headerPlayers">Players</div>
+      <div class="submenu" id="arenaCommands">&nbsp;</div>
+      <div id="allPlayers"></div>
+    </div>
+
+    <div id="panelInfo">
+      <div id="panelInfoContent"></div>
+      <div style="float: right;"><a href="#" onclick="hideInfoPanel(); return false;">close</a>&nbsp;&nbsp;</div>
+    </div>
+  </div>
+
+  <div id="debugContainer">
+    <div id="debug" onclick="debugPause();"></div><br>
+    <div>
+      <input id="rawCMD" type="text" size="80" onkeyup="if (isKey(event,13)){ sendToEngine(this.value.replace(/;/g,'\t')); }">
+      <input id="hidePing" type="checkbox"> Hide Ping
+      <input id="hideChat" type="checkbox"> Hide Chat
+      &nbsp;&nbsp;&nbsp;<a href="#" onclick="$('debugContainer').style.display='none';">Close</a>
+    </div>
+  </div>
+
+  <div style="clear: both;"></div>
+
+  <div id="blackScreen"><img src="img/processing.gif" style="position: absolute; top: 50%; left: 50%; z-index: 5; width: 25px; height: 25px;"></div>
+
+  <div id="dialogBox">
+    <div id="dialogBoxContent"></div>
+    <a href="#" onclick="$('blackScreen').style.display='none'; $('dialogBox').style.display='none';; return false;">close</a>
+  </div>
+
+  <div id="initBox">
+    <div id="initBoxContent"></div>
+  </div>
+
+  <div id="loginBox">
+    <div style="text-align: center; font-weight: bold;">
+      <h2>XLink Kai 7.4 WebUI</h2>
+    </div>
+
+    <br />
+
+    <p style="padding-left: 10px; padding-right: 10px;">Unable to log in? To ensure EU GDPR compliance, please consent to Team XLink's data collection and storage policies,
+    by visiting the <a href="https://www.teamxlink.co.uk/consent.php" target="_blank" style="font-weight: bold; text-decoration: underline;">consent page</a>.</p>
+    <br /><br />
+
+    <form autocomplete="off" method="post">
+      <h1 id="loginKaiTag">KaiTag:</h1><input type="text" name="username" id="username" size="20"><br>
+      <h1 id="loginPassword">Password:</h1><input type="password" name="password" id="password" size="20" onkeydown="if (isKey(event,13)){ doLogin(); return false;}"><br><br>
+      <h1>&nbsp;</h1><div><input  id="loginBtn" class="btnLogin" type="button" value="Login" onclick="doLogin();"></div>
+      <br><br>
+      <div align="center"><a href="config.htm?ui=true"><span id="ID_HELP_3">Configure</span></a></div>
+    </form>
+  </div>
+
+  <div id="errorBox" style="text-align: center; font-weight: bold;">
+    <br /><br /><br />
+    Communications between the UI and Engine appear to have stopped responding. Is the engine is still running?
+    Please refresh your web browser to proceed.
+  </div>
+
+  <div id="gameWindow"></div>
+
+  <div id="logo" alt="Configure"></div>
+
+  <div id="soundContainer"></div>
+
+  <script src="/scripts/locale.js?kid=191124"></script>
+  <script src="/js/common.js?kid=191124"></script>
+  <script src="/js/ajax.js?kid=191124"></script>
+  <script src="/js/kaiUI.js?kid=191124"></script>
+
+</body>
+</html>

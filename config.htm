@@ -1,0 +1,311 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Configuration | XLink Kai 7.4</title>
+  <link rel="stylesheet" href="/css/main.css?kid=191124">
+  <link rel="stylesheet" href="/css/config.css?kid=191124">
+  <link rel="icon" href="/favicon.ico?kid=191124" type="image/ico">
+</head>
+<body>
+
+  <form action="/connector/saveconfig" method="POST" name="formConfig" class="form-config" autocomplete="off">
+    <div class="form-config__wrapper">
+      <div class="form-config__top-bar app__top-green app__top-green--label">
+        <div class="form-config__logo" onclick="document.location.href='/client.htm';"></div>
+        <span class="form-config__title" id="ID_CONFIG_TITLE">Configure</span>
+      </div>
+
+      <fieldset>
+        <legend id="ID_CONFIG_UI">User Interface:</legend>
+
+        <div class="form-config__group" id="div_StandardGUI">
+          <div class="form-config__section">
+            <input type="radio" name="kaiWebUI" id="configUIstandard" value="0">
+            <strong id="ID_CONFIG_GUI">Standard GUI</strong>
+          </div>
+
+          <div class="form-config__push form-config__padded-top">
+            <div class="form-config__section">
+              <a class="form-config__help" href="http://www.teamxlink.co.uk/wiki/doku.php?id=evo7:config:standard_ui" target="_blank">
+                <span id="ID_CONFIG_UI_PROGRAM">UI Program:</span>
+              </a>
+            </div>
+
+            <input type="text" name="kaiUI" id="kaiUI" size="20">
+          </div>
+        </div>
+
+        <div class="form-config__group">
+          <input type="radio" name="kaiWebUI" id="configUIweb" value="1">
+          <strong id="ID_CONFIG_WEBUI">Web UI</strong>
+
+          <div class="form-config__push form-config__padded-top">
+            <a class="form-config__help" href="http://www.teamxlink.co.uk/wiki/doku.php?id=evo7:config:web_ui_password" target="_blank">
+              <span id="ID_CONFIG_HTTP_PASSWORD">Remote Access Password:</span>
+            </a>
+
+            <div class="form-config__section">
+              <input type="password" name="kaiHTTPPassword" id="kaiHTTPPassword" size="20">
+            </div>
+
+            <div class="form-config__section">
+              <input type="checkbox" name="kaiLaunchUI" id="kaiLaunchUI" value="1">
+
+              <a class="form-config__help" href="http://www.teamxlink.co.uk/wiki/doku.php?id=evo7:config:auto_launch_ui" target="_blank">
+                <span id="ID_CONFIG_LAUNCH_UI">Auto Launch Web UI</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend id="ID_CONFIG_DEFAULT_PROFILES">Default Profiles:</legend>
+
+        <div class="form-config__section">
+          <span id="ID_CONFIG_SELECT_PROFILE">Select a template to be applied over your settings.</span>
+        </div>
+
+        <select name="configProfile" id="configProfile" onchange="setDefaultProfile();"></select>
+      </fieldset>
+
+      <fieldset>
+        <legend id="ID_CONFIG_LANGUAGE_SETTINGS">Language Settings:</legend>
+
+        <div class="form-config__group">
+          <a class="form-config__help" href="http://www.teamxlink.co.uk/wiki/doku.php?id=evo7:config:character_set" target="_blank">
+            <span id="ID_CONFIG_CHARACTER_SET">Character Set:</span>
+          </a>
+
+          <div class="form-config__section">
+            <select name="kaiCodepage" id="kaiCodepage"></select>
+          </div>
+        </div>
+
+        <div class="form-config__group">
+          <a class="form-config__help" href="http://www.teamxlink.co.uk/wiki/doku.php?id=evo7:config:language" target="_blank">
+            <span id="ID_CONFIG_LANGUAGE">Language:</span>
+          </a>
+
+          <div class="form-config__section">
+            <select name="kaiLanguage" id="kaiLanguage"></select>
+          </div>
+        </div>
+      </fieldset>
+
+      <div class="clear"></div>
+
+      <fieldset>
+        <legend id="ID_CONFIG_NETWORK_SETTINGS">Network Settings:</legend>
+
+        <div class="form-config__group">
+          <a class="form-config__help" href="http://www.teamxlink.co.uk/wiki/doku.php?id=evo7:config:adapter" target="_blank">
+            <span id="ID_CONFIG_NETWORK_ADAPTER">Network Adaptor:</span>
+          </a>
+
+          <div class="form-config__section">
+            <select name="kaiAdapter" id="kaiAdapter"></select>
+          </div>
+        </div>
+
+        <div class="form-config__group">
+          <a class="form-config__help" href="http://www.teamxlink.co.uk/wiki/doku.php?id=evo7:config:port" target="_blank">
+            <span id="ID_CONFIG_KAI_PORT">UDP Port:</span>
+          </a>
+
+          <div class="form-config__section">
+            <input type="text" name="kaiPort" id="kaiPort" size="20">
+          </div>
+        </div>
+
+        <div class="form-config__group">
+          <a class="form-config__help" href="http://www.teamxlink.co.uk/wiki/doku.php?id=evo7:config:web_ui_port" target="_blank">
+            <span id="ID_CONFIG_WEB_UI_PORT">Web UI Port:</span>
+          </a>
+
+          <div class="form-config__section">
+            <input type="text" name="kaiWebUIPort" id="kaiWebUIPort" size="20">
+          </div>
+        </div>
+
+        <div class="form-config__group" id="div_ProxyAutoDetect">
+          <div class="form-config__section">
+            <input type="checkbox" name="kaiProxyAutoDetect" id="kaiProxyAutoDetect" value="0" onclick="ProxyAutoDetect_Click();">
+          </div>
+
+          <a class="form-config__help" href="http://www.teamxlink.co.uk/wiki/doku.php?id=evo7:config:proxy_autodetect" target="_blank">
+            <span id="ID_CONFIG_PROXY_AUTODETECT">Autodetect Proxy Server</span>
+          </a>
+        </div>
+
+        <span id="ID_CONFIG_DHCPASSIGN">Automatically assign IP for:</span>
+
+        <div class="form-config__group form-config__checkbox-group">
+          <input type="checkbox" name="kaiDHCPAssignPS2" id="kaiDHCPAssignPS2" value="0">
+          <label for="kaiDHCPAssignPS2" id="ID_CONFIG_DHCPASSIGNPS2">PS2</label>
+
+          <input type="checkbox" name="kaiDHCPAssignPS3" id="kaiDHCPAssignPS3" value="0">
+          <label for="kaiDHCPAssignPS3" id="ID_CONFIG_DHCPASSIGNPS3">PS3</label>
+
+          <input type="checkbox" name="kaiDHCPAssignPS4" id="kaiDHCPAssignPS4" value="0">
+          <label for="kaiDHCPAssignPS4" id="ID_CONFIG_DHCPASSIGNPS4">PS4</label>
+
+          <input type="checkbox" name="kaiDHCPAssignGamecube" id="kaiDHCPAssignGamecube" value="0">
+          <label for="kaiDHCPAssignGamecube" id="ID_CONFIG_DHCPASSIGNGAMECUBE">Gamecube</label>
+
+          <br>
+
+          <input type="checkbox" name="kaiDHCPAssignXBoxOne" id="kaiDHCPAssignXBoxOne" value="0">
+          <label for="kaiDHCPAssignXBoxOne" id="ID_CONFIG_DHCPASSIGNXBOXONE">XBox One</label>
+
+          <input type="checkbox" name="kaiDHCPAssignSwitch" id="kaiDHCPAssignSwitch" value="0">
+          <label for="kaiDHCPAssignSwitch" id="ID_CONFIG_DHCPASSIGNSWITCH">Switch</label>
+
+          <br>
+
+          <input type="checkbox" name="kaiDHCPAssignXBoxHomeBrew" id="kaiDHCPAssignXBoxHomeBrew" value="0">
+          <label for="kaiDHCPAssignXBoxHomeBrew" id="ID_CONFIG_DHCPASSIGNXBOXHOMEBREW">Xbox Homebrew</label>
+
+          <input type="checkbox" name="kaiDHCPAssignXBox360HomeBrew" id="kaiDHCPAssignXBox360HomeBrew" value="0">
+          <label for="kaiDHCPAssignXBox360HomeBrew" id="ID_CONFIG_DHCPASSIGNXBOX360HOMEBREW">Xbox 360 Homebrew</label>
+        </div>
+
+        <div class="form-config__group">
+          <div id="div_ENABLE_XBOXHOMEBREW">
+            <input type="checkbox" name="kaiEnableXBoxHomeBrew" id="kaiEnableXBoxHomeBrew" value="0">
+            <label for="kaiEnableXBoxHomeBrew" id="ID_CONFIG_ENABLEXBOXHOMEBREW">Enable Xbox Homebrew</label>
+          </div>
+
+          <div id="div_ENABLE_XBOX360HOMEBREW">
+            <input type="checkbox" name="kaiEnableXBox360HomeBrew" id="kaiEnableXBox360HomeBrew" value="0">
+            <label for="kaiEnableXBox360HomeBrew" id="ID_CONFIG_ENABLEXBOX360HOMEBREW">Enable Xbox 360 Homebrew</label>
+          </div>
+        </div>
+
+        <div class="form-config__group">
+          <a class="form-config__help" href="http://www.teamxlink.co.uk/wiki/doku.php?id=evo7:config:proxy_server" target="_blank">
+            <span id="ID_CONFIG_PROXY">Proxy Server:</span>
+          </a>
+
+          <div class="form-config__section">
+            <input type="text" name="kaiProxyServer" id="kaiProxyServer" size="20"> : <input type="text" name="kaiProxyPort" id="kaiProxyPort" size="4">
+          </div>
+        </div>
+
+        <div class="form-config__group form-config__checkbox-group" id="div_PacketCaptureEngine">
+          <a class="form-config__help" href="http://www.teamxlink.co.uk/wiki/doku.php?id=evo7:config:capture_engine" target="_blank">
+            <span id="ID_CONFIG_ENGINE">Packet Capture Engine:</span>
+          </a>
+
+          <div class="form-config__section">
+            <input type="radio" name="kaiLib" id="configPSSDK" value="pssdk"> <label id="ID_CONFIG_PSSDK">PSSDK</label>
+            <input type="radio" name="kaiLib" id="configWinpcap" value="winpcap"> <label id="ID_CONFIG_WINPCAP">Winpcap</label>
+          </div>
+        </div>
+
+        <input type="checkbox" name="kaiPAT" id="kaiPAT" value="1">
+        <a class="form-config__help" href="http://www.teamxlink.co.uk/wiki/doku.php?id=evo7:config:pat" target="_blank">
+          <span id="ID_CONFIG_PAT"> Enable PAT</span>
+        </a>
+
+        <div id="div_PSPMode">
+          <input type="checkbox" name="kaiPSPMode" id="kaiPSPMode" value="1">
+          <a class="form-config__help" href="http://www.teamxlink.co.uk/wiki/doku.php?id=evo7:config:psp_mode" target="_blank">
+            <span id="ID_CONFIG_PSPMODE"> Follow PSP SSID</span>
+          </a>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend id="ID_CONFIG_ENGINE_SETTINGS">Engine Settings:</legend>
+
+        <div class="form-config__group">
+          <a class="form-config__help" href="http://www.teamxlink.co.uk/wiki/doku.php?id=evo7:config:xtag" target="_blank">
+            <span id="ID_CONFIG_DEFAULT_XTAG">Default XTag (Username):</span>
+          </a>
+
+          <div class="form-config__section">
+            <input type="text" name="kaiUsername" id="kaiUsername" size="20">
+          </div>
+        </div>
+
+        <div class="form-config__group">
+          <a class="form-config__help" href="http://www.teamxlink.co.uk/wiki/doku.php?id=evo7:config:password" target="_blank">
+            <span id="ID_CONFIG_DEFAULT_PASSWORD">Default Password:</span>
+          </a>
+
+          <div class="form-config__section">
+            <input type="password" name="kaiPassword" id="kaiPassword" size="20">
+          </div>
+        </div>
+
+        <div class="form-config__keychain" id="hasKeyChain">
+          <span id="ID_CONFIG_KEYCHAIN">Your login is now stored in a secure keychain. To update your existing credentials, you must enter both your XTag and password.</span>
+        </div>
+
+        <div class="form-config__group">
+          <a class="form-config__help" href="http://www.teamxlink.co.uk/wiki/doku.php?id=evo7:config:timeout" target="_blank">
+            <span id="ID_CONFIG_CLOSE_ENGINE">Close Engine After:</span>
+          </a>
+
+          <div class="form-config__section">
+            <select name="kaiTimeout" id="kaiTimeout"></select>
+          </div>
+        </div>
+
+        <div>
+          <input type="checkbox" name="kaiAutoLogin" id="kaiAutoLogin" value="1">
+
+          <a class="form-config__help" href="http://www.teamxlink.co.uk/wiki/doku.php?id=evo7:config:auto_login" target="_blank">
+            <span id="ID_CONFIG_AUTOLOGIN">Auto Login</span>
+          </a>
+        </div>
+
+        <div>
+          <input type="checkbox" name="kaiUIClose" id="kaiUIClose" value="1">
+
+          <a class="form-config__help" href="http://www.teamxlink.co.uk/wiki/doku.php?id=evo7:config:ui_close" target="_blank">
+            <span id="ID_CONFIG_UICLOSE">Close Engine when UI closes</span>
+          </a>
+        </div>
+
+        <div>
+          <input type="checkbox" name="kaiAcceptRemote" id="kaiAcceptRemote" value="1">
+
+          <a class="form-config__help" href="http://www.teamxlink.co.uk/wiki/doku.php?id=evo7:config:accept_remote" target="_blank">
+            <span id="ID_CONFIG_REMOTE">Allow Remote Connections</span>
+          </a>
+        </div>
+
+        <div id="div_DisableSleep">
+          <input type="checkbox" name="kaiDisableSleep" id="kaiDisableSleep" value="1">
+
+          <a class="form-config__help" href="http://www.teamxlink.co.uk/wiki/doku.php?id=evo7:config:disable_sleep" target="_blank">
+            <span id="ID_CONFIG_NOSTANDBY">Disable Sleep Mode</span>
+          </a>
+        </div>
+      </fieldset>
+    </div>
+
+    <div class="form-config__wrapper form-config__save">
+      <input id="ID_CONFIG_SAVE" type="button" value="Save" onclick="configSave();">
+    </div>
+  </form>
+
+  <div id="blackScreen">
+    <img src="img/processing.gif" style="position: absolute; top: 50%; left: 50%; z-index: 5; width: 25px; height: 25px;">
+  </div>
+
+  <div id="initBox">
+    <div id="initBoxContent"></div>
+  </div>
+
+  <script src="/scripts/locale.js?kid=191124"></script>
+  <script src="/connector/getconfig?kid=191124"></script>
+  <script src="/js/common.js?kid=191124"></script>
+  <script src="/js/ajax.js?kid=191124"></script>
+  <script src="/js/kaiConfig.js?kid=191124"></script>
+
+</body>
+</html>
